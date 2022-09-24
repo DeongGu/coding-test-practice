@@ -1,6 +1,6 @@
 def solution(progresses, speeds):
     
-    new_list = {}
+    new_dict = {}
     standard = 0
     
     for idx, i in enumerate(progresses):
@@ -10,19 +10,19 @@ def solution(progresses, speeds):
             progress = int(remainder/speeds[idx])
             if standard <= progress:
                 standard = progress
-            if standard in new_list:
-                new_list[standard] += 1
+            if standard in new_dict:
+                new_dict[standard] += 1
             else:
-                new_list[standard] = 1
+                new_dict[standard] = 1
                                     
                 
         elif remainder % speeds[idx] > 0:
             progress = int(remainder/speeds[idx]+1)
             if standard <= progress:
                 standard = progress
-            if standard in new_list:
-                new_list[standard] += 1
+            if standard in new_dict:
+                new_dict[standard] += 1
             else:
-                new_list[standard] = 1
+                new_dict[standard] = 1
                 
-    return list(new_list.values())
+    return list(new_dict.values())
