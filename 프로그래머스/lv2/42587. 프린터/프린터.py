@@ -1,7 +1,7 @@
 def solution(priorities, location):
     new_priorities = []
     answer_priorities = []
-    max_priority = max(priorities)
+    # max_priority = max(priorities)
     
     for idx, i in enumerate(priorities):
         new_priorities.append([idx, i])
