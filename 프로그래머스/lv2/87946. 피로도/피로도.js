@@ -19,7 +19,7 @@ function solution(k, dungeons) {
         answer.push(count);
     }
     
-    return dungeons.length < Math.max(...answer) ? dungeons.length : Math.max(...answer);
+    return Math.max(...answer);
     
 }
 
