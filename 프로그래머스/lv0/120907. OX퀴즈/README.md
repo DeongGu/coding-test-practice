@@ -1,6 +1,6 @@
 # [level 0] OX퀴즈 - 120907 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120907?language=javascript) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120907) 
 
 ### 성능 요약
 
