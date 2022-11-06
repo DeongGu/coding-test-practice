@@ -3,10 +3,6 @@ function solution(n) {
     let num = 1;
     for(let i = 1; i <= 100; i++){
         
-        // if(i%3 === 0 || i.toString().split("").includes("3")){
-        //     num++;
-        // }
-        
        
         
         if(num%3 === 0 || num.toString().split("").includes("3")){
@@ -18,17 +14,8 @@ function solution(n) {
                     if(num%3 === 0 || num.toString().split("").includes("3")){
                         num++;
                         if(num%3 === 0 || num.toString().split("").includes("3")){
-            num++;
-            if(num%3 === 0 || num.toString().split("").includes("3")){
-                num++;
-                if(num%3 === 0 || num.toString().split("").includes("3")){
-                     num++;
-                    if(num%3 === 0 || num.toString().split("").includes("3")){
-                        num++;
-                    }
-                }
-            }
-        }
+                            num++;
+                        }
                     }
                 }
             }
@@ -46,29 +33,15 @@ function solution(n) {
                     if(num%3 === 0 || num.toString().split("").includes("3")){
                         num++;
                         if(num%3 === 0 || num.toString().split("").includes("3")){
-            num++;
-            if(num%3 === 0 || num.toString().split("").includes("3")){
-                num++;
-                if(num%3 === 0 || num.toString().split("").includes("3")){
-                     num++;
-                    if(num%3 === 0 || num.toString().split("").includes("3")){
-                        num++;
+                            num++;
+                            if(num%3 === 0 || num.toString().split("").includes("3")){
+                                num++;
+                             }
+                        }
                     }
                 }
             }
         }
-                    }
-                }
-            }
-        }
-        
-        
-        
-        
-        
-        
-        
-        
     }
     
     return result[n];
