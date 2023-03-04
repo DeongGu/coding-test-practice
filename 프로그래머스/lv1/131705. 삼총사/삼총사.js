@@ -1,14 +1,18 @@
 function solution(number) {
-  let answer = 0;
+    let answer = 0;
     
-  for (let i = 0; i < number.length; i++) {
-    for (let j = i + 1; j < number.length; j++) {
-      for (let k = j + 1; k < number.length; k++) {
-        if (number[i] + number[j] + number[k] === 0) {
-          answer++;
+    const combination = (arr, index) => {
+        if(arr.length === 3){
+            answer += arr.reduce((acc,cur) => acc+cur,0) === 0 ? 1 : 0;
+            return;
         }
-      }
+        
+        for(let i = index; i < number.length; i++){
+            combination([...arr,number[i]],i+1);
+        }
     }
-  }
-  return answer;
+    
+    combination([],0);
+        
+    return answer;    
 }
