@@ -5,7 +5,7 @@ function solution(s, skip, index) {
     
     const newAlpha = alpha.filter(el => !skipArr.includes(el));
     
-    const resultAlpha = [...newAlpha, ...newAlpha, ...newAlpha,...newAlpha];
+    const resultAlpha = [...newAlpha, ...newAlpha, ...newAlpha];
     
     const result = [];
     
