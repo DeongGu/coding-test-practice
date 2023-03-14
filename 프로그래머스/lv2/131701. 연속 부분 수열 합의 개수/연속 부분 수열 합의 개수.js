@@ -1,12 +1,18 @@
 function solution(elements) {
-    const circular = elements.concat(elements);
-    const set = new Set();
-    for (let i = 0; i < elements.length; i++) {
-        let sum = 0;
-        for (let j = 0; j < elements.length; j++) {
-            sum += circular[i + j];
-            set.add(sum);
+    const newElements = elements.concat(elements);
+    const result = [];
+    
+    for(let i =0; i < elements.length; i++){
+    
+        for(let j = 0; j < elements.length; j++){
+            const stack = newElements.slice(j,j+i);
+            result.push(stack.reduce((a,c) => parseInt(a)+parseInt(c), 0));
         }
+        
     }
-    return set.size;
+    
+    const set  = new Set(result);
+    const answer = [...set];
+    
+    return answer.length;
 }
