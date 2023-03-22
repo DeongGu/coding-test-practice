@@ -1,8 +1,6 @@
 function solution(n, k) {
     const result = [];
     
-    if(n === 2 && k === 2) return [2,1];
-    
     const factory = (num) => {
         let sum = 1;
         for(let i = 1; i <= num; i++){
@@ -11,15 +9,13 @@ function solution(n, k) {
         return sum;
     }
     
-    let rest = k;
-     
+    let rest = k-1;
+     const restArr = Array.from({length: n}, (_, index) => index + 1);
+    
     for(let i = 1; i <= n; i++){
-        const restArr = Array.from({length: n}, (_, index) => index + 1).filter((el) => !result.includes(el));
-        const numOfCases = factory(n - i);
-        const index = Math.floor((rest - 1) / numOfCases);
-        result.push(restArr[index]);
-        rest = rest - (numOfCases * index);
+        result.push(restArr.splice(Math.floor(rest/factory(n-i)),1));     
+        rest = rest%factory(n-i);
     }
     
-    return result;
+    return result.flat();
 }
