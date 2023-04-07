@@ -7,12 +7,10 @@ function solution(players, callings) {
         if(objPlayers[el] !== 0){
             const player = el;
             const frontPlayer = players[objPlayers[player]-1];
-            const temp = players[objPlayers[frontPlayer]];
             objPlayers[player]--;
             objPlayers[frontPlayer]++;
-            
             players[objPlayers[player]] = player;
-            players[objPlayers[frontPlayer]] = temp;
+            players[objPlayers[frontPlayer]] = frontPlayer;
             
         }       
     })
