@@ -10,5 +10,5 @@ function solution(w, h) {
     }
     
     
-    return BigInt(result);
+    return result;
 }
