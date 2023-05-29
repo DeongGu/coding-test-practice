@@ -38,6 +38,19 @@ function solution2(arr, M) {
   return result;
 }
 
+function solution3(arr, n) {
+  const dy = Array.from({ length: n + 1 }, () => 1000);
+
+  dy[0] = 0;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = arr[i]; j <= n; j++) {
+      dy[j] = Math.min(dy[j], dy[j - arr[i]] + 1);
+    }
+  }
+  return dy[n];
+}
+
 console.log(solution([1, 2, 5], 15));
 console.log(solution([1, 3, 6], 15));
 console.log(solution2([1, 2, 6], 15));
+console.log(solution3([1, 2, 5], 15));
