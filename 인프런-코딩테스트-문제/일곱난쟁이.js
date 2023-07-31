@@ -1,6 +1,6 @@
 function solution(arr) {
   let sum = arr.reduce((a, b) => a + b, 0);
-
+  let flag = 0;
   for (let i = 0; i < arr.length - 1; i++) {
     const first = arr[i];
     for (let j = i + 1; j < arr.length; j++) {
@@ -9,8 +9,11 @@ function solution(arr) {
       if (sum - first - second === 100) {
         arr.splice(j, 1);
         arr.splice(i, 1);
+        flag = 1;
+        break;
       }
     }
+    if (flag === 1) break;
   }
   return arr;
 }
