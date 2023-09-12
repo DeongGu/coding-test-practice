@@ -4,13 +4,13 @@ function solution(operations) {
     
     for(const [order, number] of newOperations){
         if(order === "I") arr.push(+number);
-        if(order === "D" && number === "1") {
+        if(order === "D" && number === "1" && arr.length >= 1) {
             const max = Math.max(...arr);
             const maxIndex = arr.indexOf(max);
             arr.splice(maxIndex, 1);
         }
         
-        if(order === "D" && number === "-1"){
+        if(order === "D" && number === "-1" && arr.length >= 1){
             const min = Math.min(...arr);
             const minIndex = arr.indexOf(min);
             arr.splice(minIndex, 1);
