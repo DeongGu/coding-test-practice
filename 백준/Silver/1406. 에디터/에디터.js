@@ -84,15 +84,15 @@ cmdList.forEach((cmd) => {
   }
 });
 
-let result = Object.keys(nodeObj).reduce((acc, key) => {
+let result = "";
+for (let key in nodeObj) {
   if (nodeObj[key].state === true && nodeObj[key].prev === null) {
-    let currentK = key;
-    while (currentK !== null) {
-      acc += nodeObj[currentK].key;
-      currentK = nodeObj[currentK].next;
+    let currentKey = key;
+    while (currentKey !== null) {
+      result += nodeObj[currentKey].key;
+      currentKey = nodeObj[currentKey].next;
     }
   }
-  return acc;
-}, "");
+}
 
 console.log(result);
