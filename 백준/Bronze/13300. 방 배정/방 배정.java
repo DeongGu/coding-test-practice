@@ -24,20 +24,18 @@ public class Main {
 			room[gender][grade]++;
 
 		}
-		for (int j = 0; j < 2; j++) {
-			for (int k = 0; k < 6; k++) {
-				if (room[j][k] != 0) {
-					
-					if(room[j][k]/K == 0 && room[j][k] % K != 0) {
-						count++;
-					}else if(room[j][k]%K ==0) {
-						count++;
-					}else {
-						count += (room[j][k]/K) + 1;						
-					}
+		for(int i = 0; i < 6; i++) {
+			if(room[1][i] != 0) {
+				if(room[1][i]/K == 0 && room[1][i] % K != 0) {
+					count++;
+				}else if(room[1][i]%K ==0) {
+					count+= room[1][i]/K;
+				}else {
+					count += (room[1][i]/K) + 1;						
 				}
 			}
 		}
+
         sb.append(count);
         bw.write(sb.toString());
         bw.flush();
