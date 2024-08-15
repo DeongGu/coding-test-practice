@@ -1,14 +1,18 @@
-# [Silver IV] 자리배정 - 10157 
+# [Silver III] 자리배정 - 10157 
 
 [문제 링크](https://www.acmicpc.net/problem/10157) 
 
 ### 성능 요약
 
-메모리: 9884 KB, 시간: 212 ms
+메모리: 18496 KB, 시간: 128 ms
 
 ### 분류
 
-브루트포스 알고리즘(bruteforcing), 구현(implementation)
+브루트포스 알고리즘, 구현
+
+### 제출 일자
+
+2024년 8월 15일 23:21:20
 
 ### 문제 설명
 
