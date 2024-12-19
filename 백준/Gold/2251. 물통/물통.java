@@ -6,6 +6,7 @@ public class Main {
 	static int A, B, C;
 	static List<Integer> result;
 	static HashSet<String> visited;
+	static Deque<int[]> queue;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,7 +36,7 @@ public class Main {
 
 	static void bfs() {
 
-		Deque<int[]> queue = new ArrayDeque<>();
+		queue = new ArrayDeque<>();
 		queue.add(new int[] { 0, 0, C });
 
 		while (!queue.isEmpty()) {
@@ -55,46 +56,45 @@ public class Main {
 			int emptyC = C - z;
 
 			if (emptyB >= x) {
-				addState(queue, visited, 0, x + y, z);
+				addState(0, x + y, z);
 			} else {
-				addState(queue, visited, x - emptyB, B, z);
+				addState(x - emptyB, B, z);
 			}
 
 			if (emptyC >= x) {
-				addState(queue, visited, 0, y, x + z);
+				addState(0, y, x + z);
 			}
 
 			if (emptyA >= y) {
-				addState(queue, visited, x + y, 0, z);
+				addState(x + y, 0, z);
 			} else {
-				addState(queue, visited, A, y - emptyA, z);
+				addState(A, y - emptyA, z);
 			}
 
 			if (emptyC >= y) {
-				addState(queue, visited, x, 0, y + z);
+				addState(x, 0, y + z);
 			}
 
 			if (emptyA >= z) {
-				addState(queue, visited, x + z, y, 0);
+				addState(x + z, y, 0);
 			} else {
-				addState(queue, visited, A, y, z - emptyA);
+				addState(A, y, z - emptyA);
 			}
 
 			if (emptyB >= z) {
-				addState(queue, visited, x, y + z, 0);
+				addState(x, y + z, 0);
 			} else {
-				addState(queue, visited, x, B, z - emptyB);
+				addState(x, B, z - emptyB);
 			}
 		}
 
 	}
 
-	static void addState(Deque<int[]> queue, Set<String> visited, int nx, int ny, int nz) {
+	static void addState(int nx, int ny, int nz) {
 		String state = nx + "," + ny + "," + nz;
 		if (!visited.contains(state)) {
 			visited.add(state);
 			queue.add(new int[] { nx, ny, nz });
 		}
 	}
-
 }
