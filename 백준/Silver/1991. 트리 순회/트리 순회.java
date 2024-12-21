@@ -3,10 +3,27 @@ import java.util.*;
 
 public class Main {
 
-	static String[] tree;
+	static class Node {
+
+		String leftChild;
+		String data;
+		String rightChild;
+
+		public Node(String leftChild, String data, String rightChild) {
+			this.leftChild = leftChild;
+			this.data = data;
+			this.rightChild = rightChild;
+		}
+		
+		public String toString() {
+			return leftChild + data + rightChild;
+		}
+	}
+
 	static String pre = "";
 	static String mid = "";
 	static String end = "";
+	static Map<String, Node> map;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,34 +32,21 @@ public class Main {
 
 		int N = Integer.parseInt(br.readLine());
 
-		tree = new String[(int) Math.pow(2, N)];
-
-		Map<String, Integer> map = new HashMap<>();
-
-		map.put("A", 1);
-		tree[1] = "A";
+		map = new HashMap<>();
 
 		for (int i = 0; i < N; i++) {
 			String[] alpa = br.readLine().split(" ");
 
-			int parentIdx = map.get(alpa[0]);
+			String left = alpa[1].equals(".") ? null : alpa[1];
+			String right = alpa[2].equals(".") ? null : alpa[2];
 
-			if (!alpa[1].equals(".")) {
-				tree[parentIdx * 2] = alpa[1];
-				map.put(alpa[1], parentIdx * 2);
-			}
-
-			if (!alpa[2].equals(".")) {
-				tree[parentIdx * 2 + 1] = alpa[2];
-				map.put(alpa[2], parentIdx * 2 + 1);
-			}
-
+			map.put(alpa[0], new Node(left, alpa[0], right));
 		}
 
-		preorder(1);
-		midorder(1);
-		endorder(1);
-
+		preorder(map.get("A"));
+		midorder(map.get("A"));
+		endorder(map.get("A"));
+		
 		sb.append(pre).append("\n").append(mid).append("\n").append(end);
 
 		bw.write(sb.toString().trim());
@@ -51,38 +55,31 @@ public class Main {
 		br.close();
 	}
 
-	static public void preorder(int index) {
+	static public void preorder(Node node) {
+		
 
-		if (index >= tree.length || tree[index] == null) {
-			return;
-		}
-
-		pre += tree[index];
-
-		preorder(index * 2);
-		preorder(index * 2 + 1);
+		if(node == null) return;
+		
+		pre += node.data;
+		preorder(map.get(node.leftChild));
+		preorder(map.get(node.rightChild));
 	}
 
-	static public void midorder(int index) {
-
-		if (index >= tree.length || tree[index] == null) {
-			return;
-		}
-
-		midorder(index * 2);
-		mid += tree[index];
-		midorder(index * 2 + 1);
+	static public void midorder(Node node) {
+		
+		if(node == null) return;
+		
+		midorder(map.get(node.leftChild));
+		mid += node.data;
+		midorder(map.get(node.rightChild));
 	}
 
-	static public void endorder(int index) {
+	static public void endorder(Node node) {
+		if(node == null) return;
 
-		if (index >= tree.length || tree[index] == null) {
-			return;
-		}
-
-		endorder(index * 2);
-		endorder(index * 2 + 1);
-		end += tree[index];
+		endorder(map.get(node.leftChild));
+		endorder(map.get(node.rightChild));
+		end += node.data;
 	}
 
 }
