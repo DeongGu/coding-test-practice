@@ -48,8 +48,8 @@ public class Main {
 		Deque<int[]> queue = new ArrayDeque<>();
 
 		queue.add(new int[] {s, 0});
-
 		boolean[] visited = new boolean[n + 1];
+        visited[s] = true;
 
 		while (!queue.isEmpty()) {
 
