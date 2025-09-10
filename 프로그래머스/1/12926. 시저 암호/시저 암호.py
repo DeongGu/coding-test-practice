@@ -1,7 +1,7 @@
 def solution(s, n):
     result = [
-        chr(((ord(c) - 65 + n) % 26) + 65) if 'A' <= c <= 'Z' 
-        else chr(((ord(c) - 97 + n) % 26) + 97) if 'a' <= c <= 'z'
+        chr(((ord(c) - ord("A") + n) % 26) + ord("A")) if 'A' <= c <= 'Z' 
+        else chr(((ord(c) - ord("a") + n) % 26) + ord("a")) if 'a' <= c <= 'z'
         else c
         for c in s
     ]
