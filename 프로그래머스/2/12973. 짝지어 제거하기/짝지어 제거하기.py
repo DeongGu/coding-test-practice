@@ -5,4 +5,4 @@ def solution(s):
         if stack and stack[-1] == c: stack.pop()
         else: stack.append(c)
     
-    return 1 if len(stack) == 0 else 0
+    return 0 if stack else 1
