@@ -8,8 +8,9 @@ def solution(s):
     
     for li in arr:
         for el in li:
-            check.add(el)
-            if len(answer) != len(check):
+            if el not in check:
                 answer.append(el)
+                check.add(el)
     
     return answer
+
