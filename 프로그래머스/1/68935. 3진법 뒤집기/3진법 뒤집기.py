@@ -1,13 +1,8 @@
 def solution(n):
-
-    tmp = []
-    answer = n
+    nums = []
+    num = n
+    while num:
+        num, digit = divmod(num, 3)
+        nums.append(str(digit))
     
-    while answer / 3 != 0:
-        tmp.append(answer % 3)
-        answer = answer // 3
-    
-    for idx, v in enumerate(list(map(int,tmp))[::-1]):
-        answer += (3 ** idx) * v
-        
-    return answer
+    return int("".join(nums), 3)
