@@ -25,4 +25,4 @@ def solution(numbers):
             if i != 1 and i != 0:
                 answer.append(i)
             
-    return len(list(set(answer)))
+    return len(set(answer))
