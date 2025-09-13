@@ -17,6 +17,4 @@ def solution(answers):
         if v == max_cnt:
             answer.append(idx+1)
     
-    if len(answer) > 1: answer.sort()
-    
     return answer
