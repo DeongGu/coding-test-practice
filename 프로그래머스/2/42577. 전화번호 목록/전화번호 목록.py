@@ -1,9 +1,10 @@
 def solution(phone_book):
     
-    new_list = sorted(phone_book)
+    phone_book.sort()
     
-    for idx, num in enumerate(new_list):
-        if idx+1 == len(new_list):
-            return True
-        elif new_list[idx+1].startswith(num):
+    for i in range(1,len(phone_book)):
+        if phone_book[i].startswith(phone_book[i-1]):
             return False
+        
+    return True
+    
