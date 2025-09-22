@@ -2,15 +2,11 @@ def solution(participant, completion):
     people = {}
     
     for p in participant:
-        if p in people:
-            people[p] += 1
-        else:
-            people[p] = 1
+        people[p] = people.get(p, 0) + 1
         
-    
     for c in completion:
         people[c] -= 1
     
     for i in people:
-        if people[i] == 1:
+        if people[i]:
             return i
