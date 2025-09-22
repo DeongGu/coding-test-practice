@@ -1,10 +1,16 @@
 def solution(phone_book):
     
-    phone_book.sort()
+    dic = {}
     
-    for i in range(1,len(phone_book)):
-        if phone_book[i].startswith(phone_book[i-1]):
-            return False
-        
+    for num in phone_book:
+        dic[num] = 1
+    
+    for num in phone_book:
+        check = ""
+        for n in num:
+            check += n
+            if check in dic and check != num:
+                return False
+                
     return True
     
