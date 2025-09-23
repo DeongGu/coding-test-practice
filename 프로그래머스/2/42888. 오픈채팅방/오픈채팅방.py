@@ -16,8 +16,8 @@ def solution(record):
             
     for order, uid in history:
         if order == "Enter":
-            result.append("".join([data[uid],"님이 들어왔습니다."]))
+            result.append(f"{data[uid]}님이 들어왔습니다.")
         elif order == "Leave":
-            result.append("".join([data[uid],"님이 나갔습니다."]))
+            result.append(f"{data[uid]}님이 나갔습니다.")
     
     return result
