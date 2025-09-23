@@ -3,12 +3,9 @@ def solution(clothes):
     answer = 1
     
     for name, kind in clothes:
-        if kind in dic:
-            dic[kind].append(name)
-        else:
-            dic[kind] = [name]
+        dic[kind] = dic.get(kind, 0) + 1
     
     for key in dic:
-        answer *= (len(dic[key]) + 1)
+        answer *= dic[key] + 1
     
     return answer - 1
