@@ -1,9 +1,11 @@
 def solution(triangle):
     
-    dp = [[0, *i, 0] for i in triangle]
+    height = len(triangle) - 1
     
-    for i in range(1, len(triangle)):
-        for j in range(1, i + 2):
-            dp[i][j] += max(dp[i-1][j-1], dp[i-1][j])
-    
-    return max(dp[-1])
+    while height > 0:
+        
+        for i in range(len(triangle[height])-1):
+            triangle[height-1][i] += max(triangle[height][i], triangle[height][i+1])
+        height -= 1
+        
+    return triangle[0][0]
