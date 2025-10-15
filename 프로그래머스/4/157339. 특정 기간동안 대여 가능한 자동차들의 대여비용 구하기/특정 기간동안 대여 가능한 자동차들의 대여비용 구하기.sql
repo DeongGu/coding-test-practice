@@ -1,0 +1,40 @@
+WITH DesiredCars AS (
+    SELECT C.CAR_ID, C.CAR_TYPE, C.DAILY_FEE
+    FROM CAR_RENTAL_COMPANY_CAR C
+    WHERE C.CAR_TYPE IN ('세단', 'SUV')
+      AND NOT EXISTS (
+        SELECT 1
+        FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY H
+        WHERE H.CAR_ID = C.CAR_ID
+          AND NOT (H.END_DATE < '2022-11-01' OR H.START_DATE > '2022-11-30')
+      )
+),
+FeeWithDiscount AS (
+    SELECT 
+        D.CAR_ID,
+        D.CAR_TYPE,
+        D.DAILY_FEE,
+        COALESCE(P.DISCOUNT_RATE, 0) AS DISCOUNT_RATE
+    FROM DesiredCars D
+    LEFT JOIN CAR_RENTAL_COMPANY_DISCOUNT_PLAN P
+      ON D.CAR_TYPE = P.CAR_TYPE
+     AND P.DURATION_TYPE = '30일 이상'
+),
+FeeCalc AS (
+    SELECT
+        CAR_ID,
+        CAR_TYPE,
+        FLOOR(DAILY_FEE * (100 - DISCOUNT_RATE) / 100 * 30) AS FEE
+    FROM FeeWithDiscount
+)
+
+SELECT
+    CAR_ID,
+    CAR_TYPE,
+    FEE
+FROM FeeCalc
+WHERE FEE >= 500000 AND FEE < 2000000
+ORDER BY
+    FEE DESC,
+    CAR_TYPE ASC,
+    CAR_ID DESC;
