@@ -1,22 +1,16 @@
-def steal(arr):
-    n = len(arr)
-    
-    dp = [0] * n
-    
-    dp[0] = arr[0]
-    dp[1] = max(arr[0], arr[1])
-    
-    for i in range(2, n):
-        dp[i] = max(dp[i-1], dp[i-2] + arr[i]) 
-    
-    return dp[-1]
-
 def solution(money):
     
-    money1 = money[:-1]
-    money2 = money[1:]
+    dp = [0] * len(money)
+    dp[0] = dp[1] = money[0]
     
-    result1 = steal(money1)
-    result2 = steal(money2)
+    for i in range(2, len(money) - 1):
+        dp[i] = max(dp[i-1], money[i] + dp[i-2])
     
-    return max(result1, result2)
+    dp2 = [0] * len(money)
+    dp2[0] = 0
+    dp2[1] = money[1]
+    
+    for i in range(2, len(money)):
+        dp2[i] = max(dp2[i-1], money[i] + dp2[i-2])
+    
+    return max(max(dp), max(dp2))
