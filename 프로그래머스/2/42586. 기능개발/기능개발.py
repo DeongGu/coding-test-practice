@@ -1,16 +1,12 @@
 def solution(progresses, speeds):
     answer = []
     
-    while progresses:
+    for progress, speed in zip(progresses, speeds):
+        rest = -((progress-100) // speed)
         
-        for i in range(len(progresses)):
-            progresses[i] += speeds[i]
-        
-        cnt = 0
-        while progresses and progresses[0] >= 100:
-            progresses.pop(0)
-            speeds.pop(0)
-            cnt += 1
-        
-        if cnt > 0: answer.append(cnt)
-    return answer
+        if not answer or answer[-1][0] < rest:
+            answer.append([rest, 1])
+        else:
+            answer[-1][1] += 1
+    
+    return [a[1] for a in answer]
