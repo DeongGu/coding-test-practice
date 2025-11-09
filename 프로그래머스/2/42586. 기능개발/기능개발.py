@@ -1,23 +1,16 @@
 def solution(progresses, speeds):
     answer = []
     
-    end = 0
-    c = 0
-    
-    for i in range(len(progresses)):
-        cur = 100 - progresses[i]    
-        day = (cur // speeds[i]) + 1 if cur % speeds[i] != 0 else cur // speeds[i]
+    while progresses:
         
-        if i == 0:
-            end = day
+        for i in range(len(progresses)):
+            progresses[i] += speeds[i]
         
-        if end >= day:
-            c += 1
-        else:
-            answer.append(c)
-            c = 1
-            end = day
+        cnt = 0
+        while progresses and progresses[0] >= 100:
+            progresses.pop(0)
+            speeds.pop(0)
+            cnt += 1
         
-    answer.append(c)
-        
+        if cnt > 0: answer.append(cnt)
     return answer
